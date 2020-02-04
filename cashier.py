@@ -1,7 +1,7 @@
 def main():
 	done = True
 	listofitems = []
-	itemsdic = {'item':'','price':0.0,'quan':0}
+	itemsdic = {'name':'','price':0.0,'quantity':0}
 	totalprice = 0
 	while done:
 		item = input("Item (enter \"done\" when finished):")
@@ -9,22 +9,24 @@ def main():
 			done = False
 			pass
 		else:
-			itemsdic['item'] = item
+			newdic = itemsdic.copy()
+			newdic['name'] = item
 			price = float(input("Price:"))
-			itemsdic['price']= price
-			quan = int(input("Quantity"))
-			itemsdic['quan'] = quan
-			listofitems.append(itemsdic)
-			print("-------------------")
+			newdic['price']= price
+			quan = int(input("Quantity:"))
+			newdic['quantity'] = quan
+			listofitems.append(newdic)
 		pass
+	print("")
+	print("")
 	print("-------------------")
 	print("receipt")
 	print("-------------------")
 	for item in listofitems:
-		totalprice = totalprice + (item['price']* item['quan'])
-		print(str(item['quan']) + " " + item['item']+" " +str(item['price']*item['quan'])+"KD")
+		totalprice = float(totalprice + (item['price']* item['quantity']))
+		print(str(item['quantity']) + " " + item['name']+" " +str((item['price']*item['quantity']))+"KD")
 	print("-------------------")
-	print("Total Price: "+str(totalprice)+"KD")
+	print("Total Price: "+str(totalprice )+"KD")
 
 if __name__ == '__main__':
 	main()
